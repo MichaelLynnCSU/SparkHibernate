@@ -1,0 +1,229 @@
+<html>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<body>
+
+<script>
+
+    JSONTestJson = function() {
+
+        var myData = new Object();
+        myData.id = "1012";
+        myData.email = "your-email@your-domain.com";
+        myData.firstName = Mac;
+        myData.lastName = "Mason1";
+
+
+        // var me = JSON.stringify(myData)
+        // window.alert(me);
+
+        $.ajax({
+            url: "http://localhost:4567/jsonMultiString",
+            type: "GET",
+            dataType: "json",  // sending this type back
+            data: JSON.stringify(myData),
+            success: function (result) {
+                var myJSON = result;
+                window.alert(myJSON);
+                document.getElementById("demo").innerHTML = myJSON;
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(thrownError);
+            }
+        });
+    };
+
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+
+
+    $(document).ready(function(){
+        $("#JSONTestUserJquery").click(function(){
+           var id_post = $("#JSONTestUserJquery").attr("value")
+            window.alert(id_post);
+
+            var myData = new Object();
+            myData.id = "3000";
+            myData.email = "your-email";
+            myData.firstName = id_post;
+            myData.lastName = "Mason1";
+
+            window.alert(myData.id);
+
+            var obj = JSON.parse("{\"id\":\"3000\",\"firstName\":\"\u0027Mike\u0027\",\"lastName\":\"\u0027Lynn\u0027\",\"email\":\"\u0027emails\u0027\"}");
+            window.alert(obj.id);
+
+            $.ajax({
+                url: "http://localhost:4567/user/"+ myData.firstName,
+                type: "POST",
+                data: JSON.stringify(myData),   // serialize object to send
+                dataType: "text",               // ajax converts response to json object
+                success: function (response) {
+                    window.alert(response);
+                    $("div#testname").replaceWith(response);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+        });
+    });
+</Script>
+
+
+
+<script>
+
+    JSONTestUserJavaSCript = function() {
+        window.alert("here");
+        var id_post = document.getElementById("id").value;
+        var name_post = document.getElementById("name").value;
+        var last_post =  document.getElementById("last").value;
+        var email_post = document.getElementById("email").value;
+
+        window.alert(id_post + name_post + last_post + email_post);
+
+        var myData = new Object();
+        myData.id = id_post;
+        myData.email = email_post;
+        myData.firstName = name_post;
+        myData.lastName = last_post;
+
+        var convert = JSON.stringify(myData);
+        window.alert(convert);
+
+        var test = "{ \"name\":\"John\", \"age\":30, \"car\":null }";
+        var test2 = "{ \"name\":\"John\", \"age\":" + id_post + ", \"car\":null }";
+        window.alert(test);
+        window.alert(test2);
+
+        $.ajax({
+        url: "http://localhost:4567/user",
+        type: "POST",
+        dataType: "json",  // expecting this type back
+        contentType: 'application/json',
+        data: JSON.stringify(myData),
+         success: function (result) {
+        var myJSON = JSON.stringify(result);
+        window.alert(myJSON);
+
+            // The .innerHTML() property work like .html() jQuery method. innerHTML is a JavaScript property.
+           //  The innerHTML property sets and gets the HTML content of matched element.
+
+        document.getElementById("demo").innerHTML = myJSON;
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+    alert(xhr.status);
+    alert(thrownError);
+    }
+    });
+    };
+
+</script>
+
+<script>
+
+    JSONTestGetData = function() {
+
+
+        $.ajax({
+            url: "http://localhost:4567/get",
+            type: "POST",
+            success: function (result) {
+                window.alert(result);
+                $("div#content").replaceWith(result);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(thrownError);
+            }
+        });
+    };
+
+</script>
+
+
+<script>
+
+    JSONTestSortData = function() {
+
+        $.ajax({
+            url: "http://localhost:4567/sort",
+            type: "POST",
+            success: function (result) {
+                window.alert(result);
+                $("div#content").replaceWith(result);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(thrownError);
+            }
+        });
+    };
+
+</script>
+
+<script>
+
+    JSONTestSearchData = function() {
+
+        $.ajax({
+            url: "http://localhost:4567/search",
+            type: "POST",
+            success: function (result) {
+                window.alert(result);
+
+                //   So html() replaces the contents of the element, while replaceWith() replaces the actual element.
+
+                //   <div id="mydiv">Hello World</div>
+                //   $('#mydiv').html('Aloha World');
+                //   <div id="mydiv">Aloha World</div>
+
+                //    <div id="mydiv">Hello World</div>
+                //    $('#mydiv').replaceWith('Aloha World');
+                //    Aloha World
+
+                $("div#content").replaceWith(result);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(thrownError);
+            }
+        });
+    };
+
+</script>
+
+<div id="header">
+    ...some content that's to be updated Header...
+    <div id="testname">
+        #include("template\header.vm")
+    </div>
+
+</div>
+
+
+<p id="demo"></p>
+
+
+<div id="content"></div>
+
+
+<div id="footer">
+    ...some content that's to be updated Footer...
+
+    #include("template\footer.vm")
+
+
+</body>
+</html>

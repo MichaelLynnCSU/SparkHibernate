@@ -1,0 +1,29 @@
+<html>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<body>
+    #set( $a = $message.getAllData() )
+
+<p id="demo"></p>
+
+<div id="content">
+
+    ...some content that's to be updated...
+    <ul>
+        <script>
+
+       // wtf is the problem with this volocity shit to javascript
+       var myJSON = '$a';
+       // single quote are for pussies
+       var myJSON2 = JSON.parse(myJSON)
+       myJSON3 = myJSON2[0]
+       console.log(myJSON3);
+       document.getElementById("demo").innerHTML = myJSON3
+        </script>
+    </ul>
+
+</div>
+
+
+
+</body>
+</html>
