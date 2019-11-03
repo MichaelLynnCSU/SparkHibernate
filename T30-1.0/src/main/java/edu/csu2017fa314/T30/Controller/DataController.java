@@ -24,7 +24,7 @@ public class DataController {
 
         ve = new VelocityEngine();
         props = new Properties();
-        props.put("file.resource.loader.path", "C:/Users/aplus/Documents/GitHub/JavaRestSP1/T30-1.0/src/main/java/edu/csu2017fa314/T30/View/");
+        props.put("file.resource.loader.path", "src/main/resources/");
         ve.init(props);
         gson = new Gson();
        // myModel = new DataService();
