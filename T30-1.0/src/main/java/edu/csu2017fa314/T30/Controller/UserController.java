@@ -2,7 +2,6 @@ package edu.csu2017fa314.T30.Controller;
 
 import com.google.gson.Gson;
 import edu.csu2017fa314.T30.Model.DataBase.DataBase;
-import edu.csu2017fa314.T30.Model.Itinerary.Data.DataService;
 import edu.csu2017fa314.T30.Model.Users.User.User;
 import edu.csu2017fa314.T30.Model.Users.User.UserService;
 import org.apache.velocity.app.VelocityEngine;
@@ -72,7 +71,7 @@ public class UserController {
         Map<String, String> view = new HashMap<String, String>();
         view.put("name", name);
         return new VelocityTemplateEngine(ve).render(
-                new ModelAndView(view, "template/header.vm"));
+                new ModelAndView(view, "templates/header.vm"));
 
     });
 

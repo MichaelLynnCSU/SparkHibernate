@@ -4,8 +4,6 @@ import edu.csu2017fa314.T30.Controller.JsonEffectController;
 import edu.csu2017fa314.T30.Controller.LayoutController;
 import edu.csu2017fa314.T30.Controller.UserController;
 import edu.csu2017fa314.T30.Model.DataBase.DataBase;
-import static spark.Spark.get;
-import static spark.Spark.port;
 
 import edu.csu2017fa314.T30.Model.Users.User.User;
 import java.sql.SQLException;
@@ -15,6 +13,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+
+import static spark.Spark.*;
 
 
 public class TripCo
@@ -93,6 +93,7 @@ public class TripCo
       port(getHerokuAssignedPort());
       get("/hello", (req, res) -> "Hello Heroku World");
 
+      staticFileLocation("/public");
 
       DataBase db = new DataBase();
       db.myDataBase();
